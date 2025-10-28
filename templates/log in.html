@@ -1,0 +1,55 @@
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow p-4">
+                <h2 class="text-center text-primary">Iniciar Sesión</h2>
+                <p class="text-center text-muted">Por favor escribe tus datos para entrar</p>
+
+                <div id="mensajeError" class="alert alert-danger d-none" role="alert">
+                    Usuario o contraseña incorrectos, intenta otra vez.
+                </div>
+
+                <form id="formLogin" action="/login" method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuario o Correo</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Escribe tu usuario">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Escribe tu contraseña">
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Este script solo valida de forma sencilla el usuario
+    document.getElementById("formLogin").addEventListener("submit", function(event){
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
+        let error = document.getElementById("mensajeError");
+
+        // Datos de ejemplo
+        if(user !== "usuario@gmail.com" || pass !== "1234"){
+            event.preventDefault();
+            error.classList.remove("d-none");
+        } else {
+            error.classList.add("d-none");
+            window.location.href = "/inicio"; // te manda a la página principal
+        }
+    });
+</script>
